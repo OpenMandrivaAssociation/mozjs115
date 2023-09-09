@@ -17,7 +17,7 @@
 %endif
 
 Summary:	JavaScript interpreter and libraries
-Name:		mozjs102
+Name:		mozjs115
 Version:	115.1.0
 Release:	1
 License:	MPLv2.0 and BSD and GPLv2+ and GPLv3+ and LGPLv2.1 and LGPLv2.1+
