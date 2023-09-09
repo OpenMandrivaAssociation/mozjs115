@@ -49,7 +49,6 @@ Patch15:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/spidermonkey_c
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1474486
 Patch16:        https://src.fedoraproject.org/rpms/mozjs115/blob/rawhide/f/firefox-112.0-commasplit.patch
 
-
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
 BuildRequires:	pkgconfig(libffi)
@@ -61,6 +60,10 @@ BuildRequires:	python
 BuildRequires:	rust
 BuildRequires:	cargo
 BuildRequires:	llvm-devel clang-devel
+%ifarch %{x86_64}
+# FIXME without this, configure barfs on znver1. Need to find a proper fix.
+BuildRequires:	libssh2.so.1()(64bit)
+%endif
 
 %description
 JavaScript is the Netscape-developed object scripting language used in millions
@@ -105,7 +108,7 @@ pushd ../..
 %patch14 -p1 -b .14~
 %patch15 -p1 -b .15~
 %patch16 -p1 -b .16~
- 
+
 popd
 
 # Remove zlib directory (to be sure using system version)
@@ -137,7 +140,6 @@ find ../../python -name "*.py" |xargs sed -i -e 's,"rU", "r",g'
 for i in ../../security/sandbox/chromium/sandbox/linux/system_headers/*_linux_syscalls.h; do
     echo '#include <asm/unistd.h>' >$i
 done
-
 
 %build
 %set_build_flags
