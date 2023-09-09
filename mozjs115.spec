@@ -125,9 +125,9 @@ export M4=m4
 export AWK=awk
 export AC_MACRODIR=$(pwd)/../../build/autoconf/
  
-pwd
-sh ../../build/autoconf/autoconf.sh --localdir=$(pwd) configure.in > configure
-chmod +x configure
+#pwd
+#sh ../../build/autoconf/autoconf.sh --localdir=$(pwd) configure.in > configure
+#chmod +x configure
 
 # Don't use stuff removed in python 3.11
 find ../../python -name "*.py" |xargs sed -i -e 's,"rU", "r",g'
