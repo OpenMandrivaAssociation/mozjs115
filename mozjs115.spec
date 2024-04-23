@@ -97,17 +97,17 @@ you will need to install %{name}-devel.
 pushd ../..
 %config_update
 
-%patch01 -p1 -b .01~
-%patch02 -p1 -b .02~
-%patch03 -p1 -b .03~
-%patch09 -p1 -b .09~
-%patch10 -p1 -b .10~
-%patch11 -p1 -b .11~ 
-%patch12 -p1 -b .12~
-%patch13 -p1 -b .13~
-%patch14 -p1 -b .14~
-%patch15 -p1 -b .15~
-%patch16 -p1 -b .16~
+%patch 01 -p1 -b .01~
+%patch 02 -p1 -b .02~
+%patch 03 -p1 -b .03~
+%patch 09 -p1 -b .09~
+%patch 10 -p1 -b .10~
+%patch 11 -p1 -b .11~ 
+%patch 12 -p1 -b .12~
+%patch 13 -p1 -b .13~
+%patch 14 -p1 -b .14~
+%patch 15 -p1 -b .15~
+%patch 16 -p1 -b .16~
 
 popd
 
