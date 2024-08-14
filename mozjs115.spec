@@ -49,6 +49,8 @@ Patch15:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/spidermonkey_c
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1474486
 Patch16:        https://src.fedoraproject.org/rpms/mozjs115/blob/rawhide/f/firefox-112.0-commasplit.patch
 
+Patch17:	firefox-115-clang19.patch
+
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
 BuildRequires:	pkgconfig(libffi)
@@ -108,6 +110,7 @@ pushd ../..
 %patch 14 -p1 -b .14~
 %patch 15 -p1 -b .15~
 %patch 16 -p1 -b .16~
+%patch 17 -p1 -b .17~
 
 popd
 
