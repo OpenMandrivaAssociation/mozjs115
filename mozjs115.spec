@@ -2,8 +2,8 @@
 
 %global pre_release %{nil}
 %define pkgname mozjs
-%define api 128
-%define major 128
+%define api 115
+%define major 115
 %define majorlib 0
 %define libmozjs %mklibname %{pkgname} %{api} %{major}
 %define libmozjs_devel %mklibname %{pkgname} %{api} -d
@@ -17,8 +17,8 @@
 %endif
 
 Summary:	JavaScript interpreter and libraries
-Name:		mozjs128
-Version:	128.2.0
+Name:		mozjs115
+Version:	115.14.0
 Release:	1
 License:	MPLv2.0 and BSD and GPLv2+ and GPLv3+ and LGPLv2.1 and LGPLv2.1+
 URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Releases/%{major}
@@ -32,7 +32,7 @@ Patch09:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/icu_sources_da
 Patch10:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/icu_sources_data-Write-command-output-to-our-stderr.patch
 
 Patch11:        https://src.fedoraproject.org/rpms/mozjs115/blob/rawhide/f/remove-sloppy-m4-detection-from-bundled-autoconf.patch
-
+ 
 # Build fixes - https://hg.mozilla.org/mozilla-central/rev/ca36a6c4f8a4a0ddaa033fdbe20836d87bbfb873
 Patch12:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/emitter.patch
 
@@ -49,7 +49,7 @@ Patch15:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/spidermonkey_c
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1474486
 Patch16:        https://src.fedoraproject.org/rpms/mozjs115/blob/rawhide/f/firefox-112.0-commasplit.patch
 
-#Patch17:	firefox-115-clang19.patch
+Patch17:	firefox-115-clang19.patch
 
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
@@ -61,7 +61,6 @@ BuildRequires:	zip
 BuildRequires:	python
 BuildRequires:	rust
 BuildRequires:	cargo
-BuildRequires:  cbindgen
 BuildRequires:	llvm-devel clang-devel
 %ifarch %{x86_64}
 # FIXME without this, configure barfs on znver1. Need to find a proper fix.
@@ -105,7 +104,7 @@ pushd ../..
 %patch 03 -p1 -b .03~
 %patch 09 -p1 -b .09~
 %patch 10 -p1 -b .10~
-%patch 11 -p1 -b .11~
+%patch 11 -p1 -b .11~ 
 %patch 12 -p1 -b .12~
 %patch 13 -p1 -b .13~
 %patch 14 -p1 -b .14~
@@ -131,7 +130,7 @@ rm -rf ../../nsprpub
 export M4=m4
 export AWK=awk
 export AC_MACRODIR=$(pwd)/../../build/autoconf/
-
+ 
 #pwd
 #sh ../../build/autoconf/autoconf.sh --localdir=$(pwd) configure.in > configure
 #chmod +x configure
