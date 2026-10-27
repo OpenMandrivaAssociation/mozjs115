@@ -55,6 +55,8 @@ Patch17:	firefox-115-clang19.patch
 Patch19:	rustc-1.98-oe-targets.patch
 # Python 3.13 removed the sre_constants module.
 Patch20:	pyparsing-sre-constants.patch
+# ast.Str was removed in Python 3.14. ast.Constant.value replaces Str.s.
+Patch21:	python314-ast-constant.patch
 
 BuildRequires:	make
 BuildRequires:	automake
@@ -122,6 +124,7 @@ pushd ../..
 %patch 17 -p1 -b .17~
 %patch 19 -p1 -b .19~
 %patch 20 -p1 -b .20~
+%patch 21 -p1 -b .21~
 
 # Fix link for icu 76
 sed -i 's/icu-i18n/icu-uc &/' js/moz.configure
