@@ -1,0 +1,16 @@
+--- a/third_party/python/pyparsing/pyparsing.py	2026-10-27 07:34:20.967784971 +0100
++++ b/third_party/python/pyparsing/pyparsing.py	2026-10-27 07:34:20.968387938 +0100
+@@ -105,7 +105,12 @@
+ import sys
+ import warnings
+ import re
+-import sre_constants
++try:
++    import sre_constants
++except ImportError:
++    # Python 3.13 removed sre_constants. This pyparsing only uses
++    # sre_constants.error, which is re.error.
++    sre_constants = re
+ import collections
+ import pprint
+ import traceback

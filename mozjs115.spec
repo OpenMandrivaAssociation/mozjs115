@@ -50,8 +50,11 @@ Patch15:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/spidermonkey_c
 Patch16:        https://src.fedoraproject.org/rpms/mozjs115/blob/rawhide/f/firefox-112.0-commasplit.patch
 
 Patch17:	firefox-115-clang19.patch
-# rustc 1.98 added *-oe-linux-* targets. config.guess says "pc".
+# rustc 1.98 added *-oe-linux-* targets. config.guess says "pc"
+# or "openmandriva".
 Patch19:	rustc-1.98-oe-targets.patch
+# Python 3.13 removed the sre_constants module.
+Patch20:	pyparsing-sre-constants.patch
 
 BuildRequires:	make
 BuildRequires:	automake
@@ -118,6 +121,7 @@ pushd ../..
 %patch 16 -p1 -b .16~
 %patch 17 -p1 -b .17~
 %patch 19 -p1 -b .19~
+%patch 20 -p1 -b .20~
 
 # Fix link for icu 76
 sed -i 's/icu-i18n/icu-uc &/' js/moz.configure
