@@ -50,7 +50,13 @@ Patch15:	https://src.fedoraproject.org/rpms/mozjs115/raw/master/f/spidermonkey_c
 Patch16:        https://src.fedoraproject.org/rpms/mozjs115/blob/rawhide/f/firefox-112.0-commasplit.patch
 
 Patch17:	firefox-115-clang19.patch
+# rustc 1.98 added *-oe-linux-* targets. config.guess says "pc".
+Patch19:	rustc-1.98-oe-targets.patch
 
+BuildRequires:	make
+BuildRequires:	automake
+BuildRequires:	m4
+BuildRequires:	libtool
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
 BuildRequires:	pkgconfig(libffi)
@@ -111,6 +117,7 @@ pushd ../..
 %patch 15 -p1 -b .15~
 %patch 16 -p1 -b .16~
 %patch 17 -p1 -b .17~
+%patch 19 -p1 -b .19~
 
 # Fix link for icu 76
 sed -i 's/icu-i18n/icu-uc &/' js/moz.configure
